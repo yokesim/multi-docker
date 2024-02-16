@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t yokesim/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true yokesim/react-test npm test
+
+after_success:
+  - docker build -t yokesim/multi-client ./client
+  - docker build -t yokesim/multi-nginx ./nginx
+  - docker build -t yokesim/multi-server ./server
+  - docker build -t yokesim/multi-worker ./worker
