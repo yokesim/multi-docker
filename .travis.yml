@@ -12,10 +12,10 @@ after_success:
   - docker build -t yokesim/multi-client ./client
   - docker build -t yokesim/multi-nginx ./nginx
   - docker build -t yokesim/multi-server ./server
-  -git@github.com:yokesim/multi-docker.git docker build -t yokesim/multi-worker ./worker
+  - docker build -t yokesim/multi-worker ./worker
 
 #login to docker CLI
-  - echo "DOCKER_PASSWORD" |docker login -u "$DOCKER_ID" --password-stdin
+  - 0echo "$DOCKER_PASSWORD" |docker login -u "$DOCKER_ID" --password-stdin
     # push image to dockerhub
   - docker push yokesim/multi-client
   - docker push yokesim/multi-nginx
