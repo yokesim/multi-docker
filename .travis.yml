@@ -21,3 +21,16 @@ after_success:
   - docker push yokesim/multi-nginx
   - docker push yokesim/multi-server
   - docker push yokesim/multi-worker  
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "multi-docker"
+  env: "Multi-docker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-184667795628"
+  path: "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
